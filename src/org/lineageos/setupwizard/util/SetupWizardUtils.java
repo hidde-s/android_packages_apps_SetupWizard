@@ -24,6 +24,7 @@ import static org.lineageos.setupwizard.SetupWizardApp.KEY_SEND_METRICS;
 import static org.lineageos.setupwizard.SetupWizardApp.LOGV;
 import static org.lineageos.setupwizard.SetupWizardApp.NAVIGATION_OPTION_KEY;
 import static org.lineageos.setupwizard.SetupWizardApp.UPDATE_RECOVERY_PROP;
+import static android.view.WindowManagerPolicyConstants.NAV_BAR_MODE_3BUTTON_OVERLAY;
 
 import android.app.StatusBarManager;
 import android.app.WallpaperManager;
@@ -300,16 +301,21 @@ public class SetupWizardUtils {
 
     private static void handleNavigationOption() {
         Bundle settingsBundle = SetupWizardApp.getSettingsBundle();
-        if (settingsBundle.containsKey(NAVIGATION_OPTION_KEY)) {
-            IOverlayManager overlayManager = IOverlayManager.Stub.asInterface(
-                    ServiceManager.getService(Context.OVERLAY_SERVICE));
-            String selectedNavMode = settingsBundle.getString(NAVIGATION_OPTION_KEY);
+        IOverlayManager overlayManager = IOverlayManager.Stub.asInterface(
+                ServiceManager.getService(Context.OVERLAY_SERVICE));
 
-            try {
-                overlayManager.setEnabledExclusiveInCategory(selectedNavMode,
-                        UserHandle.USER_CURRENT);
-            } catch (Exception ignored) {
-            }
+        String selectedNavMode;
+        if (settingsBundle.containsKey(NAVIGATION_OPTION_KEY)) {
+            selectedNavMode = settingsBundle.getString(NAVIGATION_OPTION_KEY);
+        } else {
+            // Default to 3-button navigation when user didn't select an option.
+            selectedNavMode = NAV_BAR_MODE_3BUTTON_OVERLAY;
+        }
+
+        try {
+            overlayManager.setEnabledExclusiveInCategory(selectedNavMode,
+                    UserHandle.USER_CURRENT);
+        } catch (Exception ignored) {
         }
     }
 
