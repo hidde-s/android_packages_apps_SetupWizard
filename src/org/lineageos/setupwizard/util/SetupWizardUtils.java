@@ -291,12 +291,16 @@ public class SetupWizardUtils {
     }
 
     private static void handleRecoveryUpdate() {
-        if (SetupWizardApp.getSettingsBundle().containsKey(ENABLE_RECOVERY_UPDATE)) {
-            boolean update = SetupWizardApp.getSettingsBundle()
-                    .getBoolean(ENABLE_RECOVERY_UPDATE);
-
-            SystemProperties.set(UPDATE_RECOVERY_PROP, String.valueOf(update));
+        Bundle settingsBundle = SetupWizardApp.getSettingsBundle();
+        boolean update = true; // default to YES
+        if (settingsBundle.containsKey(ENABLE_RECOVERY_UPDATE)) {
+            update = settingsBundle.getBoolean(ENABLE_RECOVERY_UPDATE);
+        } else {
+            // store the default so other code can observe it later
+            settingsBundle.putBoolean(ENABLE_RECOVERY_UPDATE, true);
         }
+
+        SystemProperties.set(UPDATE_RECOVERY_PROP, String.valueOf(update));
     }
 
     private static void handleNavigationOption() {
