@@ -274,12 +274,16 @@ public class SetupWizardUtils {
 
     private static void handleEnableMetrics(Context context) {
         Bundle privacyData = SetupWizardApp.getSettingsBundle();
-        if (privacyData != null
-                && privacyData.containsKey(KEY_SEND_METRICS)) {
+        if (privacyData != null) {
+            // Default to NO (false) if not explicitly set
+            boolean sendMetrics = privacyData.containsKey(KEY_SEND_METRICS) &&
+                    privacyData.getBoolean(KEY_SEND_METRICS, false);
+            if (!privacyData.containsKey(KEY_SEND_METRICS)) {
+                privacyData.putBoolean(KEY_SEND_METRICS, false);
+            }
             LineageSettings.Secure.putInt(context.getContentResolver(),
                     LineageSettings.Secure.STATS_COLLECTION,
-                    privacyData.getBoolean(KEY_SEND_METRICS)
-                            ? 1 : 0);
+                    sendMetrics ? 1 : 0);
         }
     }
 

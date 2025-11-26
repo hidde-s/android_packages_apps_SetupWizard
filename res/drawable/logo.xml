@@ -1,17 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-     SPDX-FileCopyrightText: 2017-2022 The LineageOS Project
-     SPDX-License-Identifier: Apache-2.0
--->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="512dp"
-    android:height="260dp"
+    android:height="512dp"
     android:viewportWidth="512"
-    android:viewportHeight="260">
+    android:viewportHeight="512">
 
+    <!-- Phone body (rounded rectangle) -->
     <path
-        android:fillColor="@color/lineage_accent"
-        android:pathData="M416,128a39.92,39.92,0,0,0-31.11,14.87l-1.5-.6A294.79,294.79,0,0,0,336,128.14s0-.09,0-.14a80,80,0,1,0-160,0s0,.09,0,.13l-1.72
-.38 a293.48,293.48,0,0,0-45.67,13.76l-1.5 .6
-a40,40,0,1,0,7.39,14.28h0a277.33,277.33,0,0,1,43.1-13,80,80,0,0,0,156.73,0,277.3,277.3,0,0,1,43.11,13h0A40,40,0,1,0,416,128ZM96,192a24,24,0,1,1,24-24A24,24,0,0,1,96,192Zm160,0a64,64,0,1,1,64-64A64.07,64.07,0,0,1,256,192Zm160,0a24,24,0,1,1,24-24A24,24,0,0,1,416,192ZM288,128a32,32,0,1,1-32-32A32,32,0,0,1,288,128Z" />
+        android:fillColor="#011826" 
+        android:pathData="M120,48
+                          h272
+                          a40,40 0 0 1 40,40
+                          v296
+                          a40,40 0 0 1 -40,40
+                          h-272
+                          a40,40 0 0 1 -40,-40
+                          v-296
+                          a40,40 0 0 1 40,-40
+                          z" />
+
+    <!-- Top earpiece / notch bar -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M236,84
+                          h40
+                          a6,6 0 0 1 6,6
+                          v0
+                          a6,6 0 0 1 -6,6
+                          h-40
+                          a6,6 0 0 1 -6,-6
+                          v0
+                          a6,6 0 0 1 6,-6
+                          z" />
+
+    <!-- Screen (inner white rectangle) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M144,104
+                          h224
+                          v248
+                          h-224
+                          z" />
+
+    <!-- Home button circle (bottom) -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M256,396
+                          m-20,0
+                          a20,20 0 1,0 40,0
+                          a20,20 0 1,0 -40,0" />
+
+    <!-- Outer bezel bottom (phone body shows around the home circle) -->
+    <!-- (No extra path needed; phone body color already provides bezel) -->
+
+    <!-- Check mark: two-segment rounded stroke drawn as filled path -->
+    <!-- Constructed to look like a thick, rounded check centered inside the screen -->
+    <path
+        android:fillColor="#33AAFF"
+        android:fillType="evenOdd"
+        android:pathData="
+            M196,240.5
+            c-3.3,0 -6.2,1.9 -7.5,4.9
+            l-28,56
+            c-2.8,5.6 0.1,12.1 5.7,14.9
+            c5.6,2.8 12.1,-0.1 14.9,-5.7
+            l20.1,-40.4
+            l73.1,37.2
+            c6.0,3.1 13.5,1.1 16.6,-4.9
+            c3.1,-6.0 1.1,-13.5 -4.9,-16.6
+            l-85.4,-43.5
+            c-1.7,-0.9 -3.6,-1.4 -5.4,-1.4
+            z" />
+
+    <!-- Slight soft shadow under phone (subtle) -->
+    <path
+        android:fillColor="#000000"
+        android:fillAlpha="0.05"
+        android:pathData="M128,464 h256 a8,8 0 0 0 8,-8 v-4 a8,8 0 0 0 -8,-8 h-256 a8,8 0 0 0 -8,8 v4 a8,8 0 0 0 8,8 z" />
+
 </vector>

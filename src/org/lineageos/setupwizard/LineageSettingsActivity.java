@@ -106,9 +106,10 @@ public class LineageSettingsActivity extends BaseSetupWizardActivity {
 
     private void updateMetricsOption() {
         final Bundle myPageBundle = mSetupWizardApp.getSettingsBundle();
+        // Default to NO (false) for metrics/help improve
         boolean metricsChecked =
-                !myPageBundle.containsKey(KEY_SEND_METRICS) || myPageBundle
-                        .getBoolean(KEY_SEND_METRICS);
+                myPageBundle.containsKey(KEY_SEND_METRICS) && myPageBundle
+                        .getBoolean(KEY_SEND_METRICS, false);
         mMetrics.setChecked(metricsChecked);
         myPageBundle.putBoolean(KEY_SEND_METRICS, metricsChecked);
     }
