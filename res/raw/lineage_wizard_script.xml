@@ -89,6 +89,12 @@
     <WizardAction
         wizard:uri="intent:#Intent;action=org.lineageos.setupwizard.THEME_SETTINGS;end"
         id="theme_settings">
+        <result wizard:action="text_size" />
+    </WizardAction>
+
+    <WizardAction
+        wizard:uri="intent:#Intent;action=org.lineageos.setupwizard.TEXT_SIZE_SETTINGS;end"
+        id="text_size">
         <result wizard:action="finish" />
     </WizardAction>
 

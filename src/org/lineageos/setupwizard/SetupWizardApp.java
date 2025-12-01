@@ -43,6 +43,7 @@ public class SetupWizardApp extends Application {
     public static final String UPDATE_RECOVERY_PROP = "persist.vendor.recovery_update";
 
     public static final String NAVIGATION_OPTION_KEY = "navigation_option";
+    public static final String TEXT_SIZE_OPTION_KEY = "text_size_option";
 
     public static final int RADIO_READY_TIMEOUT = 10 * 1000;
 
