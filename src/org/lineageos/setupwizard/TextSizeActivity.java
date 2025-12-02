@@ -132,7 +132,7 @@ public class TextSizeActivity extends BaseSetupWizardActivity {
         // Also store in LineageSettings if available
         try {
             LineageSettings.System.putFloatForUser(getContentResolver(),
-                    LineageSettings.System.FONT_SCALE, fontScale,
+                    Settings.System.FONT_SCALE, fontScale,
                     UserHandle.USER_CURRENT);
         } catch (Exception e) {
             // Fall back to Settings.System if LineageSettings fails
