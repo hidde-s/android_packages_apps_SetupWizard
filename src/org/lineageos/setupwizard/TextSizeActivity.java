@@ -5,6 +5,7 @@
 
 package org.lineageos.setupwizard;
 
+import static com.google.android.setupcompat.util.ResultCodes.RESULT_OK;
 import static org.lineageos.setupwizard.SetupWizardApp.TEXT_SIZE_OPTION_KEY;
 
 import android.content.res.Configuration;
@@ -56,6 +57,11 @@ public class TextSizeActivity extends BaseSetupWizardActivity {
         mBiggerBtn = findViewById(R.id.text_size_bigger_btn);
         mBiggestBtn = findViewById(R.id.text_size_biggest_btn);
 
+        // Verify buttons were found
+        if (mNormalBtn == null || mBiggerBtn == null || mBiggestBtn == null) {
+            throw new RuntimeException("Failed to initialize text size buttons - one or more button IDs not found in layout");
+        }
+
         // Set up click listeners
         mNormalBtn.setOnClickListener(v -> applyTextSize(TEXT_SIZE_NORMAL));
         mBiggerBtn.setOnClickListener(v -> applyTextSize(TEXT_SIZE_BIGGER));
@@ -87,9 +93,15 @@ public class TextSizeActivity extends BaseSetupWizardActivity {
 
     private void updateButtonStates() {
         // Update button visual states to show which is selected
-        mNormalBtn.setSelected(mCurrentSelection == TEXT_SIZE_NORMAL);
-        mBiggerBtn.setSelected(mCurrentSelection == TEXT_SIZE_BIGGER);
-        mBiggestBtn.setSelected(mCurrentSelection == TEXT_SIZE_BIGGEST);
+        if (mNormalBtn != null) {
+            mNormalBtn.setSelected(mCurrentSelection == TEXT_SIZE_NORMAL);
+        }
+        if (mBiggerBtn != null) {
+            mBiggerBtn.setSelected(mCurrentSelection == TEXT_SIZE_BIGGER);
+        }
+        if (mBiggestBtn != null) {
+            mBiggestBtn.setSelected(mCurrentSelection == TEXT_SIZE_BIGGEST);
+        }
     }
 
     private void applyTextSizeToActivity(float fontScale) {
@@ -109,8 +121,8 @@ public class TextSizeActivity extends BaseSetupWizardActivity {
         Settings.System.putFloat(getContentResolver(),
                 Settings.System.FONT_SCALE, fontScale);
         
-        // Call parent to proceed with next step
-        super.onNextPressed();
+        // Proceed to next action
+        nextAction(RESULT_OK);
     }
 
     @Override
