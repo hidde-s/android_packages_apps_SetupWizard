@@ -52,4 +52,9 @@
     <string name="theme_summary">Donker thema gebruikt een zwarte achtergrond om de batterij op sommige schermen langer mee te laten gaan</string>
     <string name="dark">Donker</string>
     <string name="light">Licht</string>
+    <string name="setup_text_size_title">Tekstgrootte</string>
+    <string name="setup_text_size_summary">Kies uw voorkeurstekstgrootte voor betere leesbaarheid</string>
+    <string name="text_size_normal">Normaal</string>
+    <string name="text_size_bigger">Groter</string>
+    <string name="text_size_biggest">Grootste</string>
 </resources>

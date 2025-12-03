@@ -24,15 +24,14 @@ public class TextSizeActivity extends BaseSetupWizardActivity {
     private SetupWizardApp mSetupWizardApp;
     
     // Text size preset values
-    private static final int TEXT_SIZE_SMALL = 50;  // fontScale 0.5
-    private static final int TEXT_SIZE_MEDIUM = 75; // fontScale 0.75
-    private static final int TEXT_SIZE_LARGE = 100; // fontScale 1.0
+    private static final int TEXT_SIZE_NORMAL = 75;  // fontScale 0.75
+    private static final int TEXT_SIZE_BIGGER = 100; // fontScale 1.0
+    private static final int TEXT_SIZE_BIGGEST = 125; // fontScale 1.25
 
-    private int mCurrentSelection = TEXT_SIZE_MEDIUM;
-    private TextView mPreviewText;
-    private Button mSmallBtn;
-    private Button mMediumBtn;
-    private Button mLargeBtn;
+    private int mCurrentSelection = TEXT_SIZE_NORMAL;
+    private Button mNormalBtn;
+    private Button mBiggerBtn;
+    private Button mBiggestBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,22 +45,21 @@ public class TextSizeActivity extends BaseSetupWizardActivity {
         // Get existing selection from settings bundle if available
         if (mSetupWizardApp.getSettingsBundle().containsKey(TEXT_SIZE_OPTION_KEY)) {
             mCurrentSelection = mSetupWizardApp.getSettingsBundle()
-                    .getInt(TEXT_SIZE_OPTION_KEY, TEXT_SIZE_MEDIUM);
+                    .getInt(TEXT_SIZE_OPTION_KEY, TEXT_SIZE_NORMAL);
         } else {
-            // Default to medium
-            mCurrentSelection = TEXT_SIZE_MEDIUM;
+            // Default to normal
+            mCurrentSelection = TEXT_SIZE_NORMAL;
         }
 
         // Initialize UI elements
-        mPreviewText = findViewById(R.id.text_size_preview);
-        mSmallBtn = findViewById(R.id.text_size_small_btn);
-        mMediumBtn = findViewById(R.id.text_size_medium_btn);
-        mLargeBtn = findViewById(R.id.text_size_large_btn);
+        mNormalBtn = findViewById(R.id.text_size_normal_btn);
+        mBiggerBtn = findViewById(R.id.text_size_bigger_btn);
+        mBiggestBtn = findViewById(R.id.text_size_biggest_btn);
 
         // Set up click listeners
-        mSmallBtn.setOnClickListener(v -> applyTextSize(TEXT_SIZE_SMALL));
-        mMediumBtn.setOnClickListener(v -> applyTextSize(TEXT_SIZE_MEDIUM));
-        mLargeBtn.setOnClickListener(v -> applyTextSize(TEXT_SIZE_LARGE));
+        mNormalBtn.setOnClickListener(v -> applyTextSize(TEXT_SIZE_NORMAL));
+        mBiggerBtn.setOnClickListener(v -> applyTextSize(TEXT_SIZE_BIGGER));
+        mBiggestBtn.setOnClickListener(v -> applyTextSize(TEXT_SIZE_BIGGEST));
 
         // Apply current selection
         applyTextSize(mCurrentSelection);
@@ -89,18 +87,9 @@ public class TextSizeActivity extends BaseSetupWizardActivity {
 
     private void updateButtonStates() {
         // Update button visual states to show which is selected
-        mSmallBtn.setSelected(mCurrentSelection == TEXT_SIZE_SMALL);
-        mMediumBtn.setSelected(mCurrentSelection == TEXT_SIZE_MEDIUM);
-        mLargeBtn.setSelected(mCurrentSelection == TEXT_SIZE_LARGE);
-        
-        // Optional: Update button styling
-        if (mCurrentSelection == TEXT_SIZE_SMALL) {
-            mSmallBtn.setTextAppearance(android.R.style.TextAppearance_Large);
-        } else if (mCurrentSelection == TEXT_SIZE_MEDIUM) {
-            mMediumBtn.setTextAppearance(android.R.style.TextAppearance_Large);
-        } else {
-            mLargeBtn.setTextAppearance(android.R.style.TextAppearance_Large);
-        }
+        mNormalBtn.setSelected(mCurrentSelection == TEXT_SIZE_NORMAL);
+        mBiggerBtn.setSelected(mCurrentSelection == TEXT_SIZE_BIGGER);
+        mBiggestBtn.setSelected(mCurrentSelection == TEXT_SIZE_BIGGEST);
     }
 
     private void applyTextSizeToActivity(float fontScale) {
@@ -110,34 +99,17 @@ public class TextSizeActivity extends BaseSetupWizardActivity {
         
         // Get a context with the new configuration
         android.content.Context scaledContext = createConfigurationContext(config);
-        
-        // Update preview text appearance
-        if (mPreviewText != null) {
-            // Update text size in the preview
-            float baseSizeInSp = 16f;
-            float scaledSize = baseSizeInSp * fontScale;
-            mPreviewText.setTextSize(android.util.TypedValue.COMPLEX_UNIT_SP, scaledSize);
-        }
     }
 
     @Override
     protected void onNextPressed() {
-        // Store the selected text size
+        // Store the selected text size in the bundle and system settings
         float fontScale = mCurrentSelection / 100f;
-        
-        // Apply to system settings for persistence
+        mSetupWizardApp.getSettingsBundle().putInt(TEXT_SIZE_OPTION_KEY, mCurrentSelection);
         Settings.System.putFloat(getContentResolver(),
                 Settings.System.FONT_SCALE, fontScale);
         
-        // Also store in LineageSettings if available
-        try {
-            LineageSettings.System.putFloatForUser(getContentResolver(),
-                    Settings.System.FONT_SCALE, fontScale,
-                    UserHandle.USER_CURRENT);
-        } catch (Exception e) {
-            // Fall back to Settings.System if LineageSettings fails
-        }
-        
+        // Call parent to proceed with next step
         super.onNextPressed();
     }
 
