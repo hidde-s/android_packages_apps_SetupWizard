@@ -32,11 +32,13 @@
             android:id="@+id/brand_logo"
             android:layout_width="match_parent"
             android:layout_height="0px"
-            android:layout_weight="1"
+            android:layout_weight="0.5"
             android:src="@drawable/logo"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
             android:gravity="center"
+            android:scaleX="0.5"
+            android:scaleY="0.5"
             android:padding="@dimen/content_margin_left"/>
 
         <org.lineageos.setupwizard.NavigationLayout
