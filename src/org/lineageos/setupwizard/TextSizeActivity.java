@@ -25,9 +25,9 @@ public class TextSizeActivity extends BaseSetupWizardActivity {
     private SetupWizardApp mSetupWizardApp;
     
     // Text size preset values
-    private static final int TEXT_SIZE_NORMAL = 75;  // fontScale 0.75
-    private static final int TEXT_SIZE_BIGGER = 100; // fontScale 1.0
-    private static final int TEXT_SIZE_BIGGEST = 125; // fontScale 1.25
+    private static final int TEXT_SIZE_NORMAL = 100;  // fontScale 0.75
+    private static final int TEXT_SIZE_BIGGER = 125; // fontScale 1.0
+    private static final int TEXT_SIZE_BIGGEST = 150; // fontScale 1.25
 
     private int mCurrentSelection = TEXT_SIZE_NORMAL;
     private Button mNormalBtn;
