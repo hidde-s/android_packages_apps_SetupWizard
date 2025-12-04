@@ -5,9 +5,9 @@
 
 package org.lineageos.setupwizard;
 
-import static com.google.android.setupcompat.util.ResultCodes.RESULT_OK;
 import static org.lineageos.setupwizard.SetupWizardApp.TEXT_SIZE_OPTION_KEY;
 
+import android.app.Activity;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -122,7 +122,7 @@ public class TextSizeActivity extends BaseSetupWizardActivity {
                 Settings.System.FONT_SCALE, fontScale);
         
         // Proceed to next action
-        nextAction(RESULT_OK);
+        nextAction(Activity.RESULT_OK);
     }
 
     @Override
