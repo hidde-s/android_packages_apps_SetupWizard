@@ -33,15 +33,10 @@
     <WizardAction
         wizard:uri="intent:#Intent;action=org.lineageos.setupwizard.DEVICE_SPECIFIC;end"
         id="device_specific">
-        <!-- Skip lineage_settings step and go to text_size -->
-        <result wizard:action="text_size" />
-    </WizardAction>
-
-    <WizardAction
-        wizard:uri="intent:#Intent;action=org.lineageos.setupwizard.TEXT_SIZE_SETTINGS;end"
-        id="text_size">
+        <!-- Skip lineage_settings step and go to finish -->
         <result wizard:action="finish" />
     </WizardAction>
+
 
     <!-- Temporarily commented out: LineageSettings (help improve metrics) page
     <WizardAction

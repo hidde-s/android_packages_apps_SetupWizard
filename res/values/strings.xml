@@ -81,11 +81,4 @@
     <string name="theme_summary">Dark theme uses a black background to help keep battery alive longer on some screens</string>
     <string name="dark">Dark</string>
     <string name="light">Light</string>
-
-    <!-- Text size page -->
-    <string name="setup_text_size_title">Text size</string>
-    <string name="setup_text_size_summary">Choose your preferred text size for better readability</string>
-    <string name="text_size_normal">Normal</string>
-    <string name="text_size_bigger">Bigger</string>
-    <string name="text_size_biggest">Biggest</string>
 </resources>
