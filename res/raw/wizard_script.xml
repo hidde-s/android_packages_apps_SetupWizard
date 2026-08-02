@@ -136,15 +136,7 @@
     </WizardAction>
     -->
     <WizardAction wizard:uri="intent:#Intent;package=org.lineageos.setupwizard;action=org.lineageos.setupwizard.DEVICE_SPECIFIC;end" id="device_specific">
-        <!-- Skip lineage_settings step and go directly to theme_settings -->
-        <result wizard:action="theme_settings" />
-    </WizardAction>
-    <!-- Temporarily commented out: LineageSettings (help improve metrics) page
-    <WizardAction wizard:uri="intent:#Intent;package=org.lineageos.setupwizard;action=org.lineageos.setupwizard.LINEAGE_SETTINGS;end" id="lineage_settings">
-        <result wizard:action="theme_settings" />
-    </WizardAction>
-    -->
-    <WizardAction wizard:uri="intent:#Intent;package=org.lineageos.setupwizard;action=org.lineageos.setupwizard.THEME_SETTINGS;end" id="theme_settings">
+        <!-- Skip lineage_settings and theme_settings steps; dark mode is applied by default -->
         <result wizard:action="finish" />
     </WizardAction>
     <WizardAction wizard:uri="intent:#Intent;package=org.lineageos.setupwizard;action=org.lineageos.setupwizard.LINEAGE_SETUP_COMPLETE;end" id="finish">

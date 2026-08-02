@@ -8,6 +8,7 @@ package org.lineageos.setupwizard;
 
 import android.app.Application;
 import android.app.StatusBarManager;
+import android.app.UiModeManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -65,6 +66,14 @@ public class SetupWizardApp extends Application {
         }
         sStatusBarManager = SetupWizardUtils.disableStatusBar(this);
         mHandler.postDelayed(mRadioTimeoutRunnable, SetupWizardApp.RADIO_READY_TIMEOUT);
+        // Theme selection is skipped during setup; default the device to dark mode.
+        // The user can still change this later in Settings.
+        if (SetupWizardUtils.isOwner()) {
+            UiModeManager uiModeManager = getSystemService(UiModeManager.class);
+            if (uiModeManager != null) {
+                uiModeManager.setNightModeActivated(true);
+            }
+        }
         if (SetupWizardUtils.hasGMS(this)) {
             SetupWizardUtils.disableHome(this);
             if (SetupWizardUtils.isOwner()) {
